@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 import pytz
 
 import os
-bot.run(os.getenv("TOKEN"))
 intents = discord.Intents.default()
 intents.messages = True
 intents.message_content = True
@@ -32,7 +31,7 @@ async def historial(ctx):
     if not estado_dosis:
         await ctx.send("Aún no hay historial registrado.")
     else:
-        mensaje = "**� Historial de dosis:**\n"
+        mensaje = "**  Historial de dosis:**\n"
         for fecha, estado in sorted(estado_dosis.items()):
             mensaje += f"- {fecha}: {estado}\n"
         await ctx.send(mensaje)
@@ -48,9 +47,9 @@ async def suplemento(ctx, fecha: str = None):
     dia_en_ciclo = dias_transcurridos % 14
 
     if 7 <= dia_en_ciclo <= 13:
-        await ctx.send(f"� El {hoy.strftime('%Y-%m-%d')} corresponde a la semana de **descanso** del ciclo {ciclo}.")
+        await ctx.send(f"  El {hoy.strftime('%Y-%m-%d')} corresponde a la semana de **descanso** del ciclo {ciclo}.")
     else:
-        await ctx.send(f"� El {hoy.strftime('%Y-%m-%d')} corresponde a la semana de **toma** del suplemento en el ciclo {ciclo}.")
+        await ctx.send(f"  El {hoy.strftime('%Y-%m-%d')} corresponde a la semana de **toma** del suplemento en el ciclo {ciclo}.")
 
 # ---------------- TURNOS ----------------
 turnos_registrados = {
@@ -321,23 +320,23 @@ async def turno(ctx, fecha: str = None):
     fecha_str = fecha_dt.strftime("%Y-%m-%d")
     if fecha_str in turnos_registrados:
         resultado = turnos_registrados[fecha_str]
-        await ctx.send(f"� El día {fecha_str} corresponde a: **{resultado}**")
+        await ctx.send(f"  El día {fecha_str} corresponde a: **{resultado}**")
     else:
-        await ctx.send(f"� El día {fecha_str} no tiene turno registrado.")
+        await ctx.send(f"  El día {fecha_str} no tiene turno registrado.")
 
 # ---------------- INICIO ----------------
 @bot.command()
 async def start(ctx):
     mensaje = (
-        "**¡Hola! Soy E.D.I.T.H. tu asistente personal.** �\n"
+        "**¡Hola! Soy E.D.I.T.H. tu asistente personal.**  \n"
         "Estos son los comandos disponibles:\n"
-        "� `/turno [YYYY-MM-DD]` → Consulta tu turno.\n"
-        "� `/suplemento [YYYY-MM-DD]` → Consulta si tomas o descansas suplemento.\n"
-        "� `/tomado` → Marcar suplemento como tomado hoy.\n"
-        "� `/omitido` → Marcar suplemento como omitido hoy.\n"
-        "� `/historial` → Ver historial de suplementación."
+        "  `/turno [YYYY-MM-DD]` → Consulta tu turno.\n"
+        "  `/suplemento [YYYY-MM-DD]` → Consulta si tomas o descansas suplemento.\n"
+        "  `/tomado` → Marcar suplemento como tomado hoy.\n"
+        "  `/omitido` → Marcar suplemento como omitido hoy.\n"
+        "  `/historial` → Ver historial de suplementación."
     )
     await ctx.send(mensaje)
 
-import os
+
 bot.run(os.getenv("TOKEN"))
